@@ -1,0 +1,63 @@
+.feed-tray-box {
+    spacing: 6px;
+}
+
+.feed-tray-label {
+    font-weight: normal;
+    font-size: 10pt;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.feed-tray-box.has-new .feed-tray-label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.feed-tray-badge {
+    background-color: #e01b24;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 9pt;
+    border-radius: 999px;
+    padding: 1px 6px;
+    min-width: 0;
+}
+
+.feed-tray-scroll {
+    max-height: 320px;
+}
+
+.feed-tray-scroll StScrollBar {
+    padding: 2px;
+}
+
+.feed-tray-items {
+    padding: 4px 12px;
+    max-width: 480px;
+}
+
+.feed-tray-item-row {
+    padding: 0;
+}
+
+.feed-tray-item {
+    padding: 6px 8px;
+    border-radius: 6px;
+    max-width: 480px;
+}
+
+.feed-tray-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.feed-tray-item StLabel {
+    font-size: 9.5pt;
+}
+
+.feed-tray-more,
+.feed-tray-empty {
+    padding: 6px 8px;
+    font-size: 9pt;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+}

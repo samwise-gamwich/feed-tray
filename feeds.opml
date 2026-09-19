@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>DevOps / SRE / AI daily feeds</title>
+  </head>
+  <body>
+    <outline text="AI" title="AI">
+      <outline type="rss" category="AI" text="Latent Space" xmlUrl="https://www.latent.space/feed"/>
+      <outline type="rss" category="AI" text="Hugging Face Blog" xmlUrl="https://huggingface.co/blog/feed.xml"/>
+      <outline type="rss" category="AI" text="Simon Willison" xmlUrl="https://simonwillison.net/atom/everything/"/>
+      <outline type="rss" category="AI" text="HN: AI" xmlUrl="https://hnrss.org/newest?q=AI+OR+LLM&amp;points=50"/>
+    </outline>
+    <outline text="DevOps / SRE" title="DevOps / SRE">
+      <outline type="rss" category="SRE" text="Platform Weekly" xmlUrl="https://platformweekly.com/feed/"/>
+      <outline type="rss" category="SRE" text="SRE Weekly" xmlUrl="https://sreweekly.com/feed/"/>
+      <outline type="rss" category="SRE" text="Cloudflare Blog" xmlUrl="https://blog.cloudflare.com/rss/"/>
+      <outline type="rss" category="SRE" text="Grafana Blog" xmlUrl="https://grafana.com/blog/index.xml"/>
+      <outline type="rss" category="SRE" text="Netflix Tech Blog" xmlUrl="https://netflixtechblog.com/feed"/>
+      <outline type="rss" category="SRE" text="HN: devops/sre/k8s" xmlUrl="https://hnrss.org/newest?q=devops+OR+sre+OR+kubernetes&amp;points=30"/>
+    </outline>
+  </body>
+</opml>

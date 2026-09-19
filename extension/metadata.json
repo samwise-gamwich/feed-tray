@@ -1,0 +1,7 @@
+{
+  "uuid": "feed-tray@local",
+  "name": "Feed Tray",
+  "description": "One top-bar button per RSS feed with a pending-items badge",
+  "shell-version": ["42", "43", "44"],
+  "url": "https://local"
+}

@@ -1,0 +1,6 @@
+[Unit]
+Description=Check RSS feeds and send GNOME notifications
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/feed-tracker.py
