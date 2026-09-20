@@ -99,21 +99,23 @@ class FeedIndicator extends PanelMenu.Button {
         for (const [url, feed] of Object.entries(data)) {
             const items = feed.items || [];
             const today = feed.today || [];
-            if (items.length === 0 && today.length === 0)
-                continue;
 
-            const sub = new PopupMenu.PopupSubMenuMenuItem(
-                `${feed.name}  (${items.length} new)`);
-
-            // scrollable list: unread first, then today's read items, deduped
+            // merge: all unread first, then today's read items, then the
+            // feed's latest entry so every feed always shows >= 1 item
             const seenTitles = new Set();
             const rows = [];
-            for (const it of [...items, ...today]) {
+            for (const it of [...items, ...today,
+                              ...(feed.latest ? [feed.latest] : [])]) {
                 if (seenTitles.has(it.title))
                     continue;
                 seenTitles.add(it.title);
                 rows.push(it);
             }
+            if (rows.length === 0)
+                continue;
+
+            const sub = new PopupMenu.PopupSubMenuMenuItem(
+                `${feed.name}  (${items.length} new)`);
 
             const section = new PopupMenu.PopupMenuSection();
             const scroll = new St.ScrollView({
@@ -141,8 +143,7 @@ class FeedIndicator extends PanelMenu.Button {
             });
 
             if (items.length > 0) {
-                sub.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-                const clear = new PopupMenu.PopupMenuItem('Mark all read');
+                sub.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());                const clear = new PopupMenu.PopupMenuItem('Mark all read');
                 clear.connect('activate', () => {
                     GLib.spawn_command_line_async(
                         `${TRACKER} --clear ${JSON.stringify(url)}`);

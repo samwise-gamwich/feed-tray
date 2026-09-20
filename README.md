@@ -114,6 +114,8 @@ restart feed-notify.timer`.
 
 ## Known limits
 
+- Each feed always shows at least its most recent entry (`latest`), even when
+  it is neither unread nor published today — so no submenu is ever empty.
 - A failed article fetch still produces a file: title-only LLM summary plus
   the error note; an LLM failure produces a file with the error and link.
 - Summaries need the article's `<link>` in the feed — entries without one are

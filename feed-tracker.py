@@ -167,6 +167,23 @@ def run():
             if it["title"] in old and old[it["title"]]:
                 it["read"] = True
         pending["today"] = today_items[:MAX_TODAY]
+
+        # always keep the feed's most recent entry visible, even when it is
+        # neither unread nor from today (so menus are never empty)
+        pending.setdefault("latest", None)
+        if current:
+            eid, title, link = current[0][:3]
+            unread_titles = {it["title"] for it in pending["items"]}
+            old_latest = pending["latest"] or {}
+            if title in unread_titles:
+                read = False
+            elif old_latest.get("title") == title:
+                read = old_latest.get("read", True)
+            else:
+                read = True
+            pending["latest"] = {"title": title,
+                                 "link": link or old_latest.get("link", ""),
+                                 "read": read}
         print(f"{name}: {len(fresh)} new, {len(today_items)} today",
               file=sys.stderr)
     STATUS.parent.mkdir(parents=True, exist_ok=True)
@@ -175,7 +192,7 @@ def run():
 
 
 def mark_read(url, title):
-    """Mark one entry read in both the unread list and today's list."""
+    """Mark one entry read in the unread, today, and latest lists."""
     status = load(STATUS, {})
     feed = status.get(url)
     if feed:
@@ -183,6 +200,8 @@ def mark_read(url, title):
         for it in feed.get("today", []):
             if it["title"] == title:
                 it["read"] = True
+        if (feed.get("latest") or {}).get("title") == title:
+            feed["latest"]["read"] = True
         STATUS.write_text(json.dumps(status))
 
 
@@ -316,6 +335,8 @@ def do_clear(url):
         feed["items"] = []
         for it in feed.get("today", []):
             it["read"] = True
+        if feed.get("latest"):
+            feed["latest"]["read"] = True
         STATUS.write_text(json.dumps(status))
 
 
